@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {makeStyles} from "@material-ui/styles";
-import { EmailInput, PasswordInput } from '../components/forms';
+import {Link} from 'react-router-dom';
+import { EmailInput, PasswordInput, SubmitButton } from '../components/forms';
 
 const useStyles = makeStyles({
   formBox: {
@@ -13,18 +14,60 @@ const useStyles = makeStyles({
     boxSizing: 'border-box',
     borderRadius: '24px',
     padding: '25px 50px',
+  },
+  inputWrapper: {
+    margin: '20px 0',
+  },
+  text: {
+    fontFamily: 'Noto Sans',
+    fontStyle: 'normal',
+    fontWeight: 'normal',
+    fontSize: '14px',
+    lineHeight: '19px',
+    letterSpacing: '-0.035em',
+    color: '#828282',
+    textAlign: 'center',
   }
 });
 
 const Register = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   const classes = useStyles();
+  const onClick = (event: React.FormEvent) => {
+
+  };
+
+  const onEmailChange = (e: React.FormEvent) => {
+    console.log(e.target);
+  }
   return (
     <div className={classes.formBox}>
       <h2>devchallenges</h2>
       <h3>Join thousands of learners from around the world</h3>
       <p>Master web development by making real-life projects. There are multiple paths for you to choose</p>
-      <EmailInput />
-      <PasswordInput />
+      <form>
+        <div className={classes.inputWrapper}>
+          <EmailInput saveEmail={onEmailChange}/>
+        </div>
+        <div className={classes.inputWrapper}>
+          <PasswordInput />
+        </div>
+        <div className={classes.inputWrapper}>
+          <SubmitButton text="Start coding now" onClick={onClick}/>
+        </div>
+      </form>
+      <div className={classes.inputWrapper}>
+        <p className={classes.text}>
+          or continue with these social profile
+        </p>
+      </div>
+      <div className={classes.inputWrapper}>
+        <p className={classes.text}>
+          Already a member? Login
+        </p>
+      </div>
     </div>
   )
 }
