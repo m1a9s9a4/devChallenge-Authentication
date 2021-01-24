@@ -6,9 +6,10 @@ const useStyles = makeStyles({
     border: '1px solid #BDBDBD',
     boxSizing: 'border-box',
     borderRadius: '8px',
+    fontSize: '18px',
     width: '100%',
     height: '50px',
-    padding: '5px 10px',
+    padding: '5px 20px',
   }
 });
 
