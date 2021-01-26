@@ -20,15 +20,23 @@ server.post('/register/email', async (req, res) => {
         return true;
       })
       .catch(e => {
-        return false;
+        return e;
       });
   } catch (e) {
     return false;
   }
 });
 
-server.get('/register/google' ,async (req, res) => {
-
+server.post('/register/google' ,async (req, res) => {
+  const provider = new firebase.auth.GoogleAuthProvider();
+  provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+  return await firebase.auth().signInWithPopup(provider)
+    .then((res) => {
+        return true;
+    })
+    .catch(e => {
+        return e;
+    });
 })
 
 server.get('/login/email', async (req, res) => {
