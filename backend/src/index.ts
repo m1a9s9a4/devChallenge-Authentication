@@ -32,7 +32,14 @@ server.get('/register/google' ,async (req, res) => {
 })
 
 server.get('/login/email', async (req, res) => {
-  return 'pong';
+  const {email, password} = <IEmailPassword>req.body;
+  return await firebase.auth().signInWithEmailAndPassword(email, password)
+    .then(({user}) => {
+      return true
+    })
+    .catch(e => {
+      return false;
+    });
 });
 
 server.get('/login/facebook', async (req, res) => {
