@@ -36,11 +36,19 @@ const Register = () => {
 
   const classes = useStyles();
   const onClick = (event: React.FormEvent) => {
-
+    let isRegistered;
+    fetch('http://localhost:8080/register/email')
+      .then((res) => {
+        isRegistered = res;
+      })
+      .catch(e => {
+        console.log('e');
+      })
+    console.log(e.target);
   };
 
   const onEmailChange = (e: React.FormEvent) => {
-    console.log(e.target);
+
   }
   return (
     <div className={classes.formBox}>
